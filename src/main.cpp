@@ -9,6 +9,7 @@
 #include "declare.hpp"
 #include "jobs.hpp"
 #include "great.hpp"
+#include <filesystem>
 
 using namespace std;
 int main()
@@ -17,10 +18,11 @@ int main()
   std::cout << std::unitbuf;
   std::cerr << std::unitbuf;
   great();
+  cout << endl;
   bool running = true;
   while (running)
   {
-    std::cout << "$ ";
+    std::cout << PRIMARY << pwdCommand() << WARNING << " -> " << RESET;
     string command;
     std::getline(std::cin, command);
     vector<Token> commands = tokenize(command);

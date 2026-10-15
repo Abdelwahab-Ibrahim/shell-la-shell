@@ -1,4 +1,5 @@
 #include "jobs.hpp"
+#include "style.hpp"
 
 #include <iomanip>
 #include <iostream>
@@ -47,11 +48,11 @@ void run_jobs()
 
     for (const BackgroundJob &job : background_jobs)
     {
-        cout << '[' << job.job_number << ']';
+        cout << '[' << GREEN << job.job_number << RESET << ']';
         if (job.job_number == most_recent)
-            cout << '+';
+            cout << WARNING << '+' << RESET;
         else if (job.job_number == previous)
-            cout << '-';
+            cout << WARNING << '-' << RESET;
         else
             cout << ' ';
 

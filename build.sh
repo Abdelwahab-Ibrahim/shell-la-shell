@@ -14,4 +14,4 @@ g++ -std=c++17 -I"$project_dir/include" \
     "$source_dir/redirection.cpp" \
     "$source_dir/jobs.cpp" \
     "$source_dir/runPipeline.cpp" \
-    -o "shell-la-shell"
+    -o "sls"

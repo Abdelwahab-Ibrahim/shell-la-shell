@@ -76,9 +76,29 @@ void echoCommand(vector<Token> &tokens)
 }
 
 // Built-in: pwd
-void pwdCommand()
+string pwdCommand()
 {
-    cout << GREEN << filesystem::current_path().string() << RESET << endl;
+    const filesystem::path current_path = filesystem::current_path();
+    const char *home_environment = getenv("HOME");
+    string displayed_path = current_path.string();
+
+    if (home_environment != nullptr)
+    {
+        const filesystem::path home_path = filesystem::path(home_environment).lexically_normal();
+        const string home = home_path.string();
+        const string current = current_path.string();
+
+        if (current == home)
+        {
+            displayed_path = "~/";
+        }
+        else if (current.rfind(home + "/", 0) == 0)
+        {
+            displayed_path = "~/" + current.substr(home.size() + 1);
+        }
+    }
+
+    return displayed_path;
 }
 
 // Built-in: cd
@@ -114,7 +134,7 @@ void cdCommand(vector<Token> &tokens)
     }
     catch (const filesystem::filesystem_error &e)
     {
-        cout << ERROR << "cd: " << path << ": No such file or directory" << RESET << endl;
+        cout << ERROR << "cd: " << path << RESET << ": No such file or directory" << endl;
     }
 }
 
@@ -152,7 +172,7 @@ void execute_cmd(vector<Token> &tokens, bool &running)
     }
     else if (cmd == "pwd")
     {
-        pwdCommand();
+        cout << GREEN << pwdCommand() << RESET << endl;
         run_jobs();
     }
     else if (cmd == "cd")

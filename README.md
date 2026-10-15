@@ -1,4 +1,6 @@
-# Shell La Shell
+# Shell La Shell (SLS)
+
+![Shell La Shell](shell.png)
 
 <p align="center">
   <strong>A small, colorful command-line shell written in C++.</strong><br>
@@ -55,7 +57,7 @@ From the repository root, build and launch the shell:
 
 ```sh
 ./build.sh
-./shell-la-shell
+./sls
 ```
 
 Exit the shell with:
@@ -64,14 +66,14 @@ Exit the shell with:
 exit
 ```
 
-The build script compiles the implementation files in `src/`, uses headers from `include/`, and writes the executable as `shell-la-shell` in the current working directory. The equivalent compiler command, when run from the repository root, is:
+The build script compiles the implementation files in `src/`, uses headers from `include/`, and writes the executable as `sls` in the current working directory. The equivalent compiler command, when run from the repository root, is:
 
 ```sh
 g++ -std=c++17 -Iinclude \
   src/main.cpp src/lexer.cpp src/executor.cpp src/utils.cpp \
   src/builtins.cpp src/declare.cpp src/redirection.cpp \
   src/jobs.cpp src/runPipeline.cpp \
-  -o shell-la-shell
+  -o sls
 ```
 
 ## Clone
@@ -80,7 +82,7 @@ g++ -std=c++17 -Iinclude \
 git clone https://github.com/Abdelwahab-Ibrahim/shell-la-shell.git Shell-la-shell
 cd Shell-la-shell
 ./build.sh
-./shell-la-shell
+./sls
 ```
 
 ## Technical Overview

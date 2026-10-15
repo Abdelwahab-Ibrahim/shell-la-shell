@@ -69,12 +69,6 @@ void run_external(vector<Token> &tokens)
     {
         // Child process
         signal(SIGINT, SIG_DFL);
-
-        // for (const auto &token : tokens)
-        // {
-        //     cout << "TYPE: " << static_cast<int>(token.type)
-        //          << " VALUE: [" << token.value << "]\n";
-        // }
         int saved_stdout;
         int saved_stderr;
         if (!applyRedirections(tokens, saved_stdout, saved_stderr))
@@ -102,7 +96,7 @@ void run_external(vector<Token> &tokens)
     else
     {
         const int job_number = add_background_job(get_command(), pid);
-        cout << "[" << job_number << "] " << pid << endl;
+        cout << "[" << GREEN << job_number << RESET << "] " << pid << endl;
         wait_job = true;
     }
 }
